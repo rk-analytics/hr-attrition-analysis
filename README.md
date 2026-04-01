@@ -1,129 +1,193 @@
-# 📊 HR Attrition Prediction & Risk Segmentation
+# 📊 **HR Attrition Prediction & Risk Segmentation** 
 
-## 🔍 Overview
-Employee attrition is a critical business problem impacting cost, productivity, and organizational stability.  
-This project builds a predictive model to identify employees at risk of leaving and translates insights into actionable HR strategies.
+## 🚀 Overview
+Employee attrition is a critical business challenge impacting **cost, productivity, and workforce stability**.
 
----
-
-## 📁 Dataset
-- **1470 employee records | 23 features**
-- Includes:
-  - Demographics (Age, Gender, DistanceFromHome)
-  - Job details (Department, JobRole, BusinessTravel)
-  - Compensation (MonthlyIncome, StockOptionLevel)
-  - Satisfaction metrics (JobSatisfaction, WorkLifeBalance)
-- **Target Variable:** Attrition (0 = No, 1 = Yes)  
-- **Imbalance:** ~16% attrition rate
+This project delivers an **end-to-end analytics solution** to:
+- Predict employee attrition  
+- Identify key drivers of churn  
+- Translate insights into actionable retention strategies  
 
 ---
 
-## 🎯 Objective
-- Predict employees likely to leave  
-- Identify key drivers of attrition  
-- Enable proactive, data-driven retention strategies  
+## 🎯 Objectives
+- Identify employees at high risk of leaving  
+- Understand key factors driving attrition  
+- Enable proactive, data-driven HR decision-making  
+
+---
+
+## 📦 Dataset
+- Source: **IBM HR Analytics Dataset**  
+- Records: **1470 employees**  
+- Features: **23 variables** (demographics, job role, satisfaction, compensation, etc.)  
+- Target: **Attrition (0 = No, 1 = Yes)**  
+- Note: Imbalanced dataset (~16% attrition rate)
 
 ---
 
 ## ⚙️ Approach
 
 ### 🔹 Data Preparation
-- Data validation (missing values, duplicates)
+- Data validation (missing values, duplicates, data types)  
 - Feature engineering:
-  - Tenure segments
-  - Income segments
-  - High-risk flag
+  - Tenure groups  
+  - Income segments  
+  - High-risk flag  
 
 ### 🔹 Modeling
-- Logistic Regression ✅ *(Final Model)*
-- Random Forest
-- XGBoost
+- Logistic Regression (baseline + optimized)  
+- Random Forest  
+- XGBoost  
 
-### 🔹 Optimization
-- Class imbalance handling
-- **Threshold tuning (focus on recall)**
-
-### 🔹 Evaluation
-- ROC-AUC
-- Confusion Matrix
-- Classification metrics
+### 🔹 Model Optimization
+- Class imbalance handling  
+- **Threshold tuning (recall-focused)**  
+- ROC-AUC evaluation  
 
 ### 🔹 Explainability
-- SHAP analysis to identify key drivers
+- SHAP (feature importance and model interpretation)  
 
 ### 🔹 Business Output
 - Risk segmentation:
-  - Low Risk
-  - Medium Risk
-  - High Risk
+  - Low Risk  
+  - Medium Risk  
+  - High Risk  
 
 ---
 
-## 🏆 Key Results
+## 📊 Dashboard Preview
 
-| Metric | Logistic Regression |
-|-------|--------------------|
-| ROC-AUC | ~0.84 |
-| Recall (Attrition) | **~87% (after tuning)** |
-| Precision | ~32% |
+### 🔹 Overview KPIs
+![Overview](images/dashboard_overview_kpis.png)
 
-👉 Model optimized to **maximize recall** (catch at-risk employees)
+### 🔹 Key Drivers
+![Drivers](images/dashboard_key_drivers.png)
+
+### 🔹 Risk Segmentation
+![Risk](images/dashboard_risk_segmentation.png)
 
 ---
 
 ## 🧠 Key Insights
-
-- **OverTime** is the strongest predictor of attrition  
-- Low income and early tenure significantly increase risk  
-- Job satisfaction and work environment play a key role  
-- Dataset shows **strong linear relationships**, making Logistic Regression most effective  
+- **Attrition Rate:** ~16% (moderate turnover)  
+- Overtime employees are **~3x more likely to leave**  
+- Low-income employees show **~2.4x higher attrition**  
+- Highest churn occurs in the **first 2 years (~30%)**  
+- Sales roles exhibit the **highest attrition (~40%)**  
 
 ---
 
-## 📊 Risk Segmentation
+## 🏆 Model Performance
 
-Employees are categorized based on predicted probability:
+| Model               | ROC-AUC | Key Strength                     |
+|--------------------|--------|----------------------------------|
+| Logistic Regression | **~0.83–0.84** | Best balance + interpretability |
+| Random Forest       | ~0.78  | Captures non-linearity           |
+| XGBoost             | ~0.78  | Robust but not superior          |
 
-- **High Risk (~8–10%)** → Immediate action  
+---
+
+## ⚠️ Threshold Optimization
+- Default threshold (0.5) under-detects attrition  
+- Optimized threshold (~0.30–0.49) significantly improves **recall**  
+- Enables better identification of at-risk employees  
+
+---
+
+## ✅ Final Model Selection
+
+**Selected Model: Logistic Regression**
+
+### Why Logistic Regression?
+- Achieved the **highest ROC-AUC (~0.83–0.84)**  
+- Delivered **best recall (~87%) after threshold tuning**  
+- More **interpretable and stable** than tree-based models  
+
+### Key Insight
+Despite testing advanced models, Logistic Regression performed best, indicating:
+
+> **The dataset exhibits strong linear relationships where simpler models outperform complex ones.**
+
+---
+
+### 🎯 Business Justification
+- Priority: **minimize missed attrition cases (high recall)**  
+- Provides strong performance with **clear interpretability**  
+- Suitable for **real-world HR decision-making and deployment**  
+
+👉 Final model is optimized for **decision support, not just prediction accuracy**
+
+---
+
+## 🔍 Key Drivers of Attrition
+- OverTime  
+- Monthly Income  
+- Tenure (YearsAtCompany)  
+- Job Satisfaction  
+- Environment Satisfaction  
+- Distance from Home  
+
+---
+
+## 💼 Business Impact
+
+### 🎯 Risk Segmentation
+- **High Risk (~8–10%)** → Immediate intervention  
 - **Medium Risk (~15–20%)** → Monitor & engage  
-- **Low Risk (~70%+)** → Stable  
+- **Low Risk (~70%+)** → Stable workforce  
 
 ---
 
-## 💼 Business Recommendations
-
-- Reduce excessive overtime workload  
-- Improve onboarding for early-tenure employees  
-- Optimize compensation for high-risk groups  
-- Deploy early warning system for employees with >30% attrition risk  
-
----
-
-## 🚀 Key Takeaways
-
-- Simpler models can outperform complex ones when data is well-structured  
-- Threshold tuning is critical in imbalanced classification problems  
-- Predictive models should be used as **decision-support tools**, not automation  
+### 📌 Recommended Actions
+1. Reduce overtime workload 
+2. Optimize compensation and benefits
+3. Strengthen early tenure engagement (0–2 years)  
+4. Target high-risk roles (e.g., Sales)
+5. Deploy early warning system (>30% attrition risk)
 
 ---
 
 ## 🛠️ Tech Stack
-- Python (Pandas, NumPy)
-- Scikit-learn
-- XGBoost
-- SHAP
-- Matplotlib / Seaborn
+- **Excel:** Data preprocessing  
+- **Python:** pandas, numpy, scikit-learn  
+- **Modeling:** Logistic Regression, Random Forest, XGBoost  
+- **Visualization:** matplotlib, seaborn  
+- **Explainability:** SHAP  
+- **BI Tool:** Power BI  
+- **SQL:** Data exploration  
 
 ---
 
-## 📌 Project Highlights
-- End-to-end ML pipeline  
-- Business-driven feature engineering  
-- Threshold optimization (advanced concept)  
-- Model explainability with SHAP  
-- Actionable HR insights  
+## ⚙️ Setup
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## Author
+## 📁 Project Structure
+
+hr-attrition-analysis/
+│
+├── data/
+├── notebook/
+├── sql/
+├── dashboard/
+├── images/
+└── README.md
+
+---
+
+## 🚀 Key Takeaway
+
+Attrition is driven by workload, compensation, and early tenure — and can be proactively managed using data-driven insights.
+
+The model is a decision-support tool to improve retention and workforce planning.
+
+---
+
+## 👤 Author
+
 Rahul
+Data Analyst | Business-Focused Analytics
